@@ -1,26 +1,52 @@
 import random
-item_list = ["Rock", "Paper", "Scissor"]
 
-user_choice = input("Enter your move: Rock, Paper, Scissor= ")
-comp_coice = random.choice(item_list)
+def play_game():
+    # Define available choices
+    choices = ["rock", "paper", "scissors"]
+    
+    # Initialize game scores
+    player_score = 0
+    computer_score = 0
+    
+    print("=== Welcome to Rock, Paper, Scissors! ===")
+    print("Rules: Rock beats Scissors | Scissors beats Paper | Paper beats Rock\n")
+    
+    while True:
+        # Get and sanitize player input
+        user_choice = input("Enter rock, paper, or scissors (or 'quit' to exit): ").strip().lower()
+        
+        if user_choice == 'quit':
+            break
+            
+        if user_choice not in choices:
+            print("Invalid choice! Please try again.\n")
+            continue
+            
+        # Generate random computer choice
+        computer_choice = random.choice(choices)
+        
+        print(f"\nYou chose: {user_choice}")
+        print(f"Computer chose: {computer_choice}")
+        
+        # Determine the winner
+        if user_choice == computer_choice:
+            print("It's a tie!")
+        elif (user_choice == "rock" and computer_choice == "scissors") or \
+             (user_choice == "scissors" and computer_choice == "paper") or \
+             (user_choice == "paper" and computer_choice == "rock"):
+            print("You win this round!")
+            player_score += 1
+        else:
+            print("Computer wins this round!")
+            computer_score += 1
+            
+        # Display current standings
+        print(f"Score -> You: {player_score} | Computer: {computer_score}\n")
+        
+    print("\n=== Game Over ===")
+    print(f"Final Score -> You: {player_score} | Computer: {computer_score}")
+    print("Thanks for playing!")
 
-print(f"User choice = {user_choice}, Computer choice = {comp_coice}")
-
-if user_choice == comp_coice:
-    print("Match is tie")
-elif user_choice == "Rock":
-    if comp_coice == "Paper":
-        print("Computer is win")
-    else:
-        print("You win")
-
-elif user_choice == "Paper":
-    if comp_coice == "Scissor":
-        print("Computer win")
-    else:
-        print("You win")
-elif user_choice == "Scissor":
-    if comp_coice == "Paper":
-        print("You win")
-    else:
-        print("Computer win")
+# Run the game
+if __name__ == "__main__":
+    play_game()
