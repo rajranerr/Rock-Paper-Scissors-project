@@ -13,3 +13,14 @@ elif user_choice == "Rock":
         print("Computer is win")
     else:
         print("You win")
+
+elif user_choice == "Paper":
+    if comp_coice == "Scissor":
+        print("Computer win")
+    else:
+        print("You win")
+elif user_choice == "Scissor":
+    if comp_coice == "Paper":
+        print("You win")
+    else:
+        print("Computer win")
